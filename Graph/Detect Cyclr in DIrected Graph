@@ -1,0 +1,43 @@
+bool cyclic(int i,int v,vector<int>adj[],bool visited[],bool inthecall[])
+{
+    visited[i]=1;
+    inthecall[i]=1;
+    for(int j=0;j<adj[i].size();j++)
+    {
+        if(!visited[adj[i][j]]&&cyclic(adj[i][j],v,adj,visited,inthecall))
+        {
+            return true;
+        }
+        else
+        {
+            if(inthecall[adj[i][j]])
+            {
+                return true;
+            }
+        }
+    }
+    inthecall[i]=false;
+    return false;
+}
+
+bool isCyclic(int v, vector<int> adj[])
+{
+    bool visited[v];
+    bool inthecall[v];
+    for(int i=0;i<v;i++)
+    {
+        visited[i]=false;
+        inthecall[i]=false;
+    }
+    for(int i=0;i<v;i++)
+    {
+        if(!visited[i])
+        {
+            if(cyclic(i,v,adj,visited,inthecall))
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
