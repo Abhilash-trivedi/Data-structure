@@ -17,7 +17,7 @@ node* create(int a[],int l,int r)
     
     if(l>r)return NULL;
     int mid=l+(r-l)/2;
-    cout<<a[mid]<<" ";
+   
     node* temp=new node(a[mid]);
     temp->left=create(a,l,(mid-1));
     temp->right=create(a,(mid+1),r);
@@ -27,7 +27,7 @@ node* create(int a[],int l,int r)
 void preorder(node* root)
 {
     if(root==NULL){return;}
-    //cout<<root->data<<" ";
+    cout<<root->data<<" ";
     preorder(root->left);
     
     preorder(root->right);
